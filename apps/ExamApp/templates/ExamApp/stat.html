@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+       <div class="pt-3 pr-5 pl-5 pb-0 border-bottom border-dark">
+
+                <a href="/logout" class="text-right float-right align-bottom">Log Out</a>
+                <br>
+                <a href="/wishes" class="text-right float-right align-bottom">Go Back</a>
+       
+         
+          
+            
+            
+            <!-- <a href="/book" class="text-right float-right">Books Page</a>
+            <br>
+                <a href="/fav_books" class="text-right float-right">Fav Books</a>  -->
+            <h1 class="diplay-4"> Hello, {{thisuser.first_name}}! These are your Stats</h1>
+</div>
+
+{% if messages %}
+<ul class="messages">    
+{% for message in messages %}    
+<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+
+    <div class="container p-5">
+
+<h2>Total Granted wishes for all users:
+     {{allitems}}</h2>
+     <br>
+<h4> your granted wishes: {{granted}} </h4> 
+<h4> your pending wishes: {{youritems}}</h4>
+ 
+
+
+
+
+</body>
+</html>

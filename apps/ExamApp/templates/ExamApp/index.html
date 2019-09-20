@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <!--  THIS IS THE REGSTRATION PART  -->
+        <div class="container p-5">
+            <h1>Welcome! Sign in To Make a Wish</h1>  <br>
+                <div class="row">
+                 
+                        <div class="col-sm">
+          
+<form class="form-horizontal" action='/register' method="POST">
+        {% csrf_token %}
+        <fieldset>
+          <div id="legend">
+            <legend class="">Register</legend>
+          </div>
+
+          {% if messages %}
+<ul class="messages text-danger">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label"  for="username">First Name</label>
+            <div class="controls">
+              <input type="text"  name="first_name" class="input-xlarge">
+            </div>
+          </div>
+       
+          <div class="control-group">
+                <!-- Username -->
+                <label class="control-label"  for="username">Last Name</label>
+                <div class="controls">
+                  <input type="text"  name="last_name" class="input-xlarge">
+                </div>
+              </div>
+
+          <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">E-mail</label>
+            <div class="controls">
+              <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            </div>
+          </div>
+
+
+       
+          <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+              <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+            </div>
+          </div>
+       
+          <div class="control-group">
+            <!-- Password -->
+            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+            <div class="controls">
+              <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+            </div>
+          </div>
+       
+          <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+              <button class="btn btn-primary m-5">Register</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+        
+        </div>
+        <div class="col-sm">
+        <!-- BLANK AREA -->
+    <!--  THIS IS THE LOGIN PART  -->
+    </div>
+    <div class="col-sm">
+  
+
+
+        <form class="form-horizontal" action='/login' method="POST">
+            {% csrf_token %}
+                <fieldset>
+                    <div id="legend">
+                    <legend class="">Login</legend>
+                    </div>
+{% if messages %}
+<ul class="messages text-danger">    
+{% for message in messages %}    
+<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+
+                    <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                    </div>
+                    </div>
+                
+                    <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                    </div>
+                    </div>
+                
+                    <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn btn-primary m-5">Login</button>
+                    </div>
+                    </div>
+                </fieldset>
+                </form>
+                
+                </div>
+                <div class="col-sm">
+                <!-- BLANK AREA -->
+                </div>
+                                        </div>
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="pt-3 pr-5 pl-5 pb-0 border-bottom border-dark">
+  
+    <a href="/wishes/new" class="btn btn-primary btn-lg active float-right m-1" role="button" aria-pressed="true">Make a Wish</a>
+    <a href="/wishes/stats" class="btn btn-primary btn-lg active float-right m-1" role="button" aria-pressed="true">View Stats</a>
+    <a href="/logout" class="text-right float-right align-bottom">Log Out</a>
+
+
+<!-- <a href="/book" class="text-right float-right">Books Page</a>
+<br>
+    <a href="/fav_books" class="text-right float-right">Fav Books</a>  -->
+<h1 class="diplay-4"> Welcome, {{thisuser.first_name}} </h1>
+
+</div>
+
+{% if messages %}
+<ul class="messages">    
+{% for message in messages %}    
+<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+
+    <div class="container p-5">
+    
+<div> Your Wishlist
+            <table class="table"> 
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in youritems%}
+                    <tr>
+                <td scope="row">{{item.id}}</td>
+                <td>{{item.item}}</td>
+                <td>{{item.created_at}}</td>
+            
+<td>
+        <a href="/wishes/delete/{{item.id}}">Remove</a>   |    <a href="/wishes/edit/{{item.id}}">Edit</a>  | 
+        <a href="/wishes/granted/{{item.id}}">Granted </a>       
+    </td>
+                                </tr>
+                                {% endfor %}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+<br>
+<br>
+
+
+<div> Granted Wishes!
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Wisher</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Date Granted</th>
+                    <th scope="col">Likes</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        {% for item in allitems%}
+                        <tr>
+                    <td scope="row">{{item.id}}</td>
+                    <td>{{item.item}}</td>
+                    <td>{{item.uploaded_by.first_name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td>{{item.updated_at}}</td>
+
+    <td>
+        {% if item.uploaded_by.id == request.session.userid %}
+        <h6>  </h6>
+        {% else %}
+            {% if this_user in item.users_who_fav.all %}
+                <h6>you already faved this</h6>
+            {% else %}
+            <a href="wishes/like/{{item.id}}">Like</a>  
+            {% endif %}  
+        {% endif %}  
+    </td>
+
+<td>
+{{item.users_who_fav.all.count}}
+</td>
+
+</tr>
+{% endfor %}
+</tr>
+                </tbody>
+              </table>
+
+</div>
+
+      
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+</body>
+</html>
